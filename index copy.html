@@ -17,7 +17,6 @@
                     <a href="#experience" class="nav-link">Experience</a>
                     <a href="#education" class="nav-link">Education</a>
                     <a href="#projects" class="nav-link">Projects</a>
-                    <a href="#hackathons" class="nav-link">Hackathons</a>
                     <a href="#publications" class="nav-link">Publications</a>
                     <a href="#contact" class="nav-link">Contact</a>
                 </nav>
@@ -144,27 +143,70 @@
             <div class="section-header">
                 <h2 class="section-title">Projects</h2>
             </div>
-            
-            <!-- AI/ML Projects Subsection -->
-            <h3 class="category-title">🤖 AI & Machine Learning</h3>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image" style="background-image: url('images/K8.png'); background-size: cover; background-position: center; background-color: #6b917f; padding: 1rem;"></div>
                     <div class="project-content">
-                        <h3 class="project-title">K8shield - Kubernetes Security Monitoring</h3>
-                        <p class="project-description">A security monitoring system for Kubernetes clusters with ML-based anomaly detection. Integrates real-time metrics, compliance checks, and automated threat detection.</p>
-                        
+                        <h3 class="project-title">Kubernetes Cluster Monitoring with ML</h3>
+                        <p class="project-description">Developed a security monitoring system for a Kubernetes cluster on AWS EC2, integrating real-time metrics, ML-based anomaly detection, and compliance checks.</p>
                         <div class="project-tags">
-                            <span class="project-tag">Kubernetes</span>
-                            <span class="project-tag">Machine Learning</span>
                             <span class="project-tag">AWS EC2</span>
-                            <span class="project-tag">Security</span>
+                            <span class="project-tag">AWS S3</span>
+                            <span class="project-tag">SageMaker</span>
+                            <span class="project-tag">Kubernetes</span>
+                            <span class="project-tag">Docker</span>
                             <span class="project-tag">Python</span>
                         </div>
-                        <a href="https://k8shield.netlify.app/" target="_blank" class="project-link">View Project</a>
+                        <a href="https://k8shield.netlify.app/" class="project-link">View Project</a>
                     </div>
                 </div>
                 
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('images/audio.png'); background-size: cover; background-position: center; background-color: #81a694; padding: 1rem;"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Realtime Image Generation via Audio</h3>
+                        <p class="project-description">Developed an end-to-end AI pipeline orchestrating multiple OpenAI APIs for audio-to-image generation and cached image features to optimize API usage through image feature matching.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">OpenAI APIs</span>
+                            <span class="project-tag">Whisper API</span>
+                            <span class="project-tag">ChatGPT API</span>
+                            <span class="project-tag">DALL-E API</span>
+                            <span class="project-tag">PostgreSQL</span>
+                        </div>
+                        <a href="#" class="project-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('images/aisnoop.png'); background-size: cover; background-position: center; background-color: #a4c3b2; padding: 1rem;"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Aisnoop - AI Tools Web Scraper</h3>
+                        <p class="project-description">Web scraper tool that automatically finds and categorizes free AI tools from articles across the web, helping users discover new AI resources efficiently.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Web Scraping</span>
+                            <span class="project-tag">NLP</span>
+                            <span class="project-tag">Automation</span>
+                        </div>
+                        <a href="https://github.com/CosmicMicra/Aisnoop" target="_blank" class="project-link">View Project</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('images/ss.png'); background-size: cover; background-position: center; background-color: #c5dbd0; padding: 1rem;"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Sentence-Transformer Image Matcher</h3>
+                        <p class="project-description">A simple image description matching system using SentenceTransformers to find the most similar image based on textual descriptions through semantic similarity.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">SentenceTransformers</span>
+                            <span class="project-tag">NLP</span>
+                            <span class="project-tag">Computer Vision</span>
+                        </div>
+                        <a href="https://github.com/CosmicMicra/Sentence-Transformer" target="_blank" class="project-link">View Project</a>
+                    </div>
+                </div>
+
                 <div class="project-card">
                     <div class="project-image" style="background-image: url('images/rag.png'); background-size: cover; background-position: center; background-color: #81a694; padding: 1rem;"></div>
                     <div class="project-content">
@@ -181,76 +223,7 @@
                         <a href="https://github.com/CosmicMicra/Rag-based-content-generation" target="_blank" class="project-link">View Project</a>
                     </div>
                 </div>
-    
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/aisnoop.png'); background-size: cover; background-position: center; background-color: #a4c3b2; padding: 1rem;"></div>
-                    <div class="project-content">
-                        <h3 class="project-title">Aisnoop - AI Tools Web Scraper</h3>
-                        <p class="project-description">Web scraper tool that automatically finds and categorizes free AI tools from articles across the web, helping users discover new AI resources efficiently.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">Web Scraping</span>
-                            <span class="project-tag">NLP</span>
-                            <span class="project-tag">Automation</span>
-                        </div>
-                        <a href="https://github.com/CosmicMicra/Aisnoop" target="_blank" class="project-link">View Project</a>
-                    </div>
-                </div>
-    
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/ss.png'); background-size: cover; background-position: center; background-color: #c5dbd0; padding: 1rem;"></div>
-                    <div class="project-content">
-                        <h3 class="project-title">Sentence-Transformer Image Matcher</h3>
-                        <p class="project-description">A simple image description matching system using SentenceTransformers to find the most similar image based on textual descriptions through semantic similarity.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Python</span>
-                            <span class="project-tag">SentenceTransformers</span>
-                            <span class="project-tag">NLP</span>
-                            <span class="project-tag">Computer Vision</span>
-                        </div>
-                        <a href="https://github.com/CosmicMicra/Sentence-Transformer" target="_blank" class="project-link">View Project</a>
-                    </div>
-                </div>
-    
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/audio.png'); background-size: cover; background-position: center; background-color: #81a694; padding: 1rem;"></div>
-                    <div class="project-content">
-                        <h3 class="project-title">Realtime Image Generation via Audio</h3>
-                        <p class="project-description">Developed an end-to-end AI pipeline orchestrating multiple OpenAI APIs for audio-to-image generation and cached image features to optimize API usage through image feature matching.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">OpenAI APIs</span>
-                            <span class="project-tag">Whisper API</span>
-                            <span class="project-tag">ChatGPT API</span>
-                            <span class="project-tag">DALL-E API</span>
-                            <span class="project-tag">PostgreSQL</span>
-                        </div>
-                        <a href="#" class="project-link">View Project</a>
-                    </div>
-                </div>
-            </div>
-    
-            <!-- Data Science Projects Subsection -->
-            <h3 class="category-title">📊 Data Science & Analytics</h3>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image" style="background-image: url('images/customer.png'); background-size: cover; background-position: center; background-color: #97bba9; padding: 1rem;"></div>
-                    <div class="project-content">
-                        <h3 class="project-title">Customer Return Intent Prediction</h3>
-                        <p class="project-description">Developed a machine learning model to predict restaurant customer return probability by analyzing publicly available restaurant review datasets.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Random Forest</span>
-                            <span class="project-tag">Ensemble Learning</span>
-                            <span class="project-tag">Logistic Regression</span>
-                            <span class="project-tag">Decision Tree</span>
-                        </div>
-                        <a href="#" class="project-link">View Project</a>
-                    </div>
-                </div>
-            </div>
-    
-            <!-- Systems & Networking Projects Subsection -->
-            <h3 class="category-title">💻 Systems & Networking</h3>
-            <div class="projects-grid">
+
                 <div class="project-card">
                     <div class="project-image" style="background-image: url('images/os.png'); background-size: cover; background-position: center; background-color: #6b917f; padding: 1rem;"></div>
                     <div class="project-content">
@@ -266,7 +239,7 @@
                         <a href="https://github.com/CosmicMicra/OS-prioritypipes" target="_blank" class="project-link">View Project</a>
                     </div>
                 </div>
-    
+
                 <div class="project-card">
                     <div class="project-image" style="background-image: url('images/cn.png'); background-size: cover; background-position: center; background-color: #97bba9; padding: 1rem;"></div>
                     <div class="project-content">
@@ -280,6 +253,22 @@
                             <span class="project-tag">Error Handling</span>
                         </div>
                         <a href="https://github.com/CosmicMicra/CN-2" target="_blank" class="project-link">View Project</a>
+                    </div>
+                </div>
+            
+
+                <div class="project-card">
+                    <div class="project-image" style="background-image: url('images/customer.png'); background-size: cover; background-position: center; background-color: #97bba9; padding: 1rem;"></div>
+                    <div class="project-content">
+                        <h3 class="project-title">Customer Return Intent Prediction</h3>
+                        <p class="project-description">Developed a machine learning model to predict restaurant customer return probability by analyzing publicly available restaurant review datasets.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Random Forest</span>
+                            <span class="project-tag">Ensemble Learning</span>
+                            <span class="project-tag">Logistic Regression</span>
+                            <span class="project-tag">Decision Tree</span>
+                        </div>
+                        <a href="#" class="project-link">View Project</a>
                     </div>
                 </div>
             </div>
