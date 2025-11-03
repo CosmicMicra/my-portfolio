@@ -128,6 +128,7 @@ header {
     right: -200px;
     top: -200px;
     z-index: -1;
+    animation: float 6s ease-in-out infinite;
 }
 
 .hero::after {
@@ -140,6 +141,7 @@ header {
     left: -100px;
     bottom: -100px;
     z-index: -1;
+    animation: float 8s ease-in-out infinite reverse;
 }
 
 .hero-content {
@@ -199,6 +201,16 @@ header {
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(107, 145, 127, 0.3);
 }
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
 
 .scroll-indicator {
     position: absolute;
@@ -350,13 +362,13 @@ header {
     background-color: var(--card-bg);
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: var(--shadow);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
 }
 
 .project-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 .project-image {
@@ -427,6 +439,8 @@ header {
     margin-bottom: 2rem;
     transition: var(--transition);
     border-left: 4px solid var(--accent-color);
+    position: relative;  
+    overflow: hidden; 
 }
 
 .publication-card:hover {
