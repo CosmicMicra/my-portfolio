@@ -3,280 +3,131 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soniya Phaltane · notebook</title>
-  <meta name="description" content="Soniya Phaltane: computer science, machine learning and security. Projects, hackathons and writing.">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✎</text></svg>">
+  <title>Soniya Phaltane</title>
+  <meta name="description" content="Soniya Phaltane works where AI and security meet. A short story about what that means.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♡</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- shared hand-drawn doodles -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <symbol id="d-brain" viewBox="0 0 64 64"><path d="M22 50c-8 0-12-6-10-12-6-3-6-12 0-15-2-7 5-13 12-10 3-6 13-6 16 0 7-3 14 3 12 10 6 3 6 12 0 15 2 6-2 12-10 12-3 4-8 4-10 0-3 4-8 4-10 0z"/><path d="M32 13v37M22 24c4 1 6 4 6 8M42 24c-4 1-6 4-6 8M20 38c4 0 7 2 8 5M44 38c-4 0-7 2-8 5"/></symbol>
-      <symbol id="d-shield" viewBox="0 0 64 64"><path d="M32 8c8 5 15 6 22 6 0 20-6 34-22 42C16 48 10 34 10 14c7 0 14-1 22-6z"/><path d="M22 32l7 7 13-14"/></symbol>
-      <symbol id="d-chip" viewBox="0 0 64 64"><rect x="18" y="18" width="28" height="28" rx="3"/><rect x="26" y="26" width="12" height="12"/><path d="M24 18v-8M32 18v-8M40 18v-8M24 46v8M32 46v8M40 46v8M18 24h-8M18 32h-8M18 40h-8M46 24h8M46 32h8M46 40h8"/></symbol>
-      <symbol id="d-chart" viewBox="0 0 64 64"><path d="M10 10v44h46"/><path d="M16 44l10-12 9 6 14-20"/><path d="M45 18h4v4"/></symbol>
-      <symbol id="d-heart" viewBox="0 0 64 64"><path d="M32 52C14 40 8 30 10 22c2-9 14-12 22-2 8-10 20-7 22 2 2 8-4 18-22 30z"/></symbol>
-      <symbol id="d-star" viewBox="0 0 64 64"><path d="M32 8l6 17 18 1-14 11 5 18-15-10-15 10 5-18L8 26l18-1z"/></symbol>
-    </defs>
-  </svg>
+  <a href="#more" class="corner hand">skip to links ↓</a>
 
-  <header class="nav" id="top">
-    <a href="#top" class="nav-name">Soniya <span aria-hidden="true">♡</span></a>
-    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">menu</button>
-    <nav class="nav-links">
-      <a href="#about">about</a>
-      <a href="#path">path</a>
-      <a href="#projects">projects</a>
-      <a href="#hackathons">hackathons</a>
-      <a href="#writing">writing</a>
-      <a href="#contact">say hi</a>
-    </nav>
-  </header>
+  <!-- 1 · hi -->
+  <section class="hello">
+    <div class="hello-photo">
+      <img src="images/profile.jpg" alt="Soniya smiling">
+      <svg class="smiley" viewBox="0 0 60 60" aria-hidden="true"><circle cx="30" cy="30" r="24"/><path d="M21 24v3M39 24v3M19 36c6 7 16 7 22 0"/></svg>
+    </div>
+    <p class="kicker">hi, I'm Soniya.</p>
+    <h1>Can I tell you<br><em>a small story?</em></h1>
+    <p class="scroll-hint hand">scroll, slowly ↓</p>
+  </section>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero page">
-      <div class="hero-text">
-        <p class="hand hi"><span class="write">hi, I'm</span></p>
-        <h1>Soniya Phaltane</h1>
-        <svg class="scribble" viewBox="0 0 320 20" aria-hidden="true"><path d="M4 14c50-8 110-10 170-6 45 3 90 2 142-6"/></svg>
-        <p class="lede">I build machine learning systems and like making them a little safer to use. Computer science at Santa Clara University, with roots in Pune.</p>
-        <p class="meta">San Jose, CA · ML · security · systems</p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn">see my work</a>
-          <a href="https://drive.google.com/file/d/1V2m2AZzjk9Q4EhVxDTRktUBtY-zUyEx6" class="btn btn-ghost" target="_blank" rel="noopener">résumé ↗</a>
+  <!-- 2 · word cloud -->
+  <section class="cloud-wrap" data-pin>
+    <div class="cloud-stage">
+      <div class="cloud" id="cloud" aria-hidden="true"></div>
+      <p class="cloud-line" id="cloud-line">AI is learning to <b>act on its own</b>. Somebody has to check <b>what it trusts</b>.</p>
+    </div>
+  </section>
+
+  <!-- 3 · the incident -->
+  <section class="incident" data-pin>
+    <div class="incident-stage">
+      <div class="incident-text">
+        <p class="tiny">a made-up story, about a very real kind of problem</p>
+        <div class="beat" data-beat="0">
+          <h2>Tuesday, 2:14 am.</h2>
+          <p>Everyone's asleep. An AI coding assistant is still working, and it decides it needs a small library to format dates.</p>
+        </div>
+        <div class="beat" data-beat="1">
+          <h2>It finds one.</h2>
+          <p>Nice name, thousands of downloads, a friendly README. Nothing about it looks wrong, so it installs it.</p>
+        </div>
+        <div class="beat" data-beat="2">
+          <h2>But nobody looked inside.</h2>
+          <p>Go on, you look.</p>
+          <button class="look" id="look">look inside</button>
+        </div>
+        <div class="beat" data-beat="3">
+          <h2>There it is.</h2>
+          <p>A few quiet lines that pack up your secret keys and send them to a stranger. No alarms. Just one line, doing exactly what it was written to do.</p>
         </div>
       </div>
-      <figure class="polaroid">
-        <span class="tape" aria-hidden="true"></span>
-        <img src="images/profile.jpg" alt="Portrait of Soniya Phaltane">
-        <figcaption class="hand">that's me!</figcaption>
-      </figure>
-      <p class="margin-note hand hero-note" aria-hidden="true">notes, projects &amp;<br>things I'm curious about ↓</p>
-    </section>
 
-    <!-- ABOUT -->
-    <section class="page reveal" id="about">
-      <div class="section-head">
-        <span class="num hand">01</span>
-        <h2>about</h2>
+      <div class="screen" aria-hidden="true">
+        <div class="screen-bar"><i></i><i></i><i></i><span>terminal</span></div>
+        <pre class="screen-body" id="screen"></pre>
+        <div class="stamp" id="stamp">caught ♡</div>
       </div>
-      <div class="about-grid">
-        <div class="about-body">
-          <p>I did my master's in Computer Science at Santa Clara University, focusing on AI and machine learning. Before that I studied computer engineering at Pune University and interned as an ML engineer, building anomaly detection for system logs.</p>
-          <p>Most of my projects sit where machine learning meets real infrastructure: retrieval systems, Kubernetes monitoring, security tooling. I also like hackathon projects that help people directly, like a resource map for unhoused neighbors in San Francisco.</p>
-          <p class="margin-note hand inline-note">I like to understand how a system works before I make it smarter.</p>
-        </div>
-        <aside class="index-card">
-          <span class="tape tape-sm" aria-hidden="true"></span>
-          <h3 class="hand">things I reach for</h3>
-          <dl>
-            <dt>ML</dt><dd>PyTorch, Keras, scikit-learn, Hugging Face, RAG, FAISS</dd>
-            <dt>Models</dt><dd>CNN, RNN/LSTM, Random Forest, SVM, DBSCAN</dd>
-            <dt>Infra</dt><dd>AWS (SageMaker, EC2, Bedrock), Docker, Kubernetes</dd>
-            <dt>Code</dt><dd>Python, Java, C, React, Node.js, TypeScript</dd>
-          </dl>
-        </aside>
+    </div>
+  </section>
+
+  <!-- 4 · now -->
+  <section class="chapter reveal" id="now">
+    <p class="num hand">so, what do I do?</p>
+    <h2>I build the thing that <em>looks inside.</em></h2>
+    <div class="prose">
+      <p>Right now I work at <b>Rapticore</b> on a project called <b>Overwatch</b>. Before a package lands on your computer, or your AI assistant's, Overwatch opens it up and reads what it actually does. Is it reaching for your passwords? Talking to a server it has no reason to talk to?</p>
+      <p>If something's off, it stops the package and tells you why, in plain words, so a person can decide.</p>
+      <p>I love this space because AI is starting to <span class="hl">do things</span> instead of just answering questions, and every new thing it can do is something it has to be careful with.</p>
+    </div>
+  </section>
+
+  <!-- 5 · before -->
+  <section class="chapter reveal" id="before">
+    <p class="num hand">how I got here</p>
+    <h2>A few things, <em>in order.</em></h2>
+    <ol class="steps">
+      <li>
+        <span class="when">2024 – 2026</span>
+        <p>I did my master's in computer science at <b>Santa Clara University</b>, mostly machine learning and AI.</p>
+      </li>
+      <li>
+        <span class="when">before that</span>
+        <p>As an ML intern I taught a model to read <b>server logs</b> and notice when something felt unusual. That's when security and AI first clicked together for me.</p>
+      </li>
+      <li>
+        <span class="when">on the side</span>
+        <p>I built <a href="https://k8shield.netlify.app/" target="_blank" rel="noopener">K8shield</a>, which watches Kubernetes clusters for trouble, and wrote a few papers about monitoring them.</p>
+      </li>
+      <li>
+        <span class="when">one weekend</span>
+        <p>With friends, I helped make <a href="https://devpost.com/software/neighborhood-net" target="_blank" rel="noopener">Neighborhood Net</a>, a map that helps unhoused people in San Francisco find food and shelter nearby. Still one of my favorite things I've worked on.</p>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 6 · more -->
+  <section class="chapter more reveal" id="more">
+    <p class="num hand">if you're still here ♡</p>
+    <h2>Other things <em>I made.</em></h2>
+    <ul class="made">
+      <li><a href="https://devpost.com/software/codeshield-lpktd8" target="_blank" rel="noopener">CodeShield</a><span>lets AI help with code it isn't allowed to see</span></li>
+      <li><a href="https://github.com/CosmicMicra/Rag-based-content-generation" target="_blank" rel="noopener">Study buddy</a><span>turns a YouTube lecture into notes and flashcards</span></li>
+      <li><a href="https://github.com/CosmicMicra/Aisnoop" target="_blank" rel="noopener">Aisnoop</a><span>finds free AI tools so you don't have to</span></li>
+      <li><a href="https://github.com/CosmicMicra/OS-prioritypipes" target="_blank" rel="noopener">xv6 scheduling</a><span>taught a tiny operating system to take turns</span></li>
+      <li><a href="https://youtu.be/cu7mdVQr_tI" target="_blank" rel="noopener">ReportWeave</a><span>reports that put themselves together</span></li>
+    </ul>
+
+    <div class="bye">
+      <img src="images/profile.jpg" alt="" class="bye-photo">
+      <div>
+        <p class="hand bye-note">thanks for listening :)</p>
+        <p class="links">
+          <a href="https://github.com/CosmicMicra" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/soniya-phaltane/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://drive.google.com/file/d/1V2m2AZzjk9Q4EhVxDTRktUBtY-zUyEx6" target="_blank" rel="noopener">Résumé</a>
+        </p>
       </div>
-    </section>
+      <svg class="heart" viewBox="0 0 64 64" aria-hidden="true"><path d="M32 52C14 40 8 30 10 22c2-9 14-12 22-2 8-10 20-7 22 2 2 8-4 18-22 30z"/></svg>
+    </div>
+  </section>
 
-    <!-- PATH -->
-    <section class="page reveal" id="path">
-      <div class="section-head">
-        <span class="num hand">02</span>
-        <h2>the path so far</h2>
-      </div>
-      <ol class="timeline">
-        <li>
-          <span class="when hand">2024 – 2026</span>
-          <div>
-            <h3>M.S. Computer Science</h3>
-            <p class="where">Santa Clara University · Santa Clara, CA</p>
-            <p>Focus on artificial intelligence and machine learning.</p>
-          </div>
-        </li>
-        <li>
-          <span class="when hand">Feb – Apr 2023</span>
-          <div>
-            <h3>Machine Learning Intern</h3>
-            <p class="where">TechR Business Solutions · Pune, India</p>
-            <ul>
-              <li>Built an LSTM model that flags unusual patterns in system logs in real time (85% accuracy).</li>
-              <li>Wrote the Python preprocessing pipeline that turns raw logs into sequential features.</li>
-              <li>Added OWASP ZAP scanning to the deployment pipeline to automate security testing.</li>
-            </ul>
-          </div>
-        </li>
-        <li>
-          <span class="when hand">2020 – 2024</span>
-          <div>
-            <h3>B.E. Computer Engineering</h3>
-            <p class="where">Modern College of Engineering, Pune University</p>
-          </div>
-        </li>
-      </ol>
-    </section>
-
-    <!-- PROJECTS -->
-    <section class="page reveal" id="projects">
-      <div class="section-head">
-        <span class="num hand">03</span>
-        <h2>projects</h2>
-        <p class="margin-note hand head-note">pick a page →</p>
-      </div>
-
-      <div class="filters" role="group" aria-label="Filter projects">
-        <button class="chip is-on" data-filter="all">all</button>
-        <button class="chip" data-filter="ml">AI &amp; ML</button>
-        <button class="chip" data-filter="security">security</button>
-        <button class="chip" data-filter="systems">systems</button>
-        <button class="chip" data-filter="data">data</button>
-      </div>
-
-      <div class="cards">
-        <article class="card" data-tags="security ml">
-          <svg class="doodle"><use href="#d-shield"/></svg>
-          <h3>K8shield</h3>
-          <p>Security monitoring for Kubernetes clusters: live metrics, compliance checks and ML-based anomaly detection that flags likely threats.</p>
-          <p class="tags">Kubernetes · ML · AWS EC2 · Python</p>
-          <a href="https://k8shield.netlify.app/" target="_blank" rel="noopener" class="link">visit the live site ↗</a>
-        </article>
-
-        <article class="card" data-tags="ml">
-          <svg class="doodle"><use href="#d-brain"/></svg>
-          <h3>YouTube study assistant</h3>
-          <p>Turns an educational video into summaries, flashcards and practice questions, using retrieval-augmented generation over the transcript.</p>
-          <p class="tags">RAG · Gemini API · FAISS · sentence-transformers</p>
-          <a href="https://github.com/CosmicMicra/Rag-based-content-generation" target="_blank" rel="noopener" class="link">code ↗</a>
-        </article>
-
-        <article class="card" data-tags="ml data">
-          <svg class="doodle"><use href="#d-star"/></svg>
-          <h3>Aisnoop</h3>
-          <p>A scraper that finds free AI tools mentioned in articles across the web and sorts them into categories.</p>
-          <p class="tags">Python · web scraping · NLP</p>
-          <a href="https://github.com/CosmicMicra/Aisnoop" target="_blank" rel="noopener" class="link">code ↗</a>
-        </article>
-
-        <article class="card" data-tags="ml">
-          <svg class="doodle"><use href="#d-brain"/></svg>
-          <h3>Sentence-transformer image matcher</h3>
-          <p>Finds the image that best matches a written description by comparing the two in embedding space.</p>
-          <p class="tags">Python · SentenceTransformers · NLP</p>
-          <a href="https://github.com/CosmicMicra/Sentence-Transformer" target="_blank" rel="noopener" class="link">code ↗</a>
-        </article>
-
-        <article class="card" data-tags="ml">
-          <svg class="doodle"><use href="#d-star"/></svg>
-          <h3>Audio to image, in real time</h3>
-          <p>Speech goes in and a picture comes out: Whisper, ChatGPT and DALL·E chained together. Matching against cached image features cuts down on repeat API calls.</p>
-          <p class="tags">OpenAI APIs · Whisper · DALL·E · PostgreSQL</p>
-        </article>
-
-        <article class="card" data-tags="data ml">
-          <svg class="doodle"><use href="#d-chart"/></svg>
-          <h3>Will they come back?</h3>
-          <p>Predicts whether a restaurant customer will return, using public review data. Compares random forests, decision trees and logistic regression. Later published.</p>
-          <p class="tags">Random Forest · ensembles · scikit-learn</p>
-        </article>
-
-        <article class="card" data-tags="systems">
-          <svg class="doodle"><use href="#d-chip"/></svg>
-          <h3>Priority scheduling in xv6</h3>
-          <p>Added a custom timer to the xv6 teaching OS, then implemented rate-monotonic and priority scheduling on top of it.</p>
-          <p class="tags">C · operating systems · scheduling</p>
-          <a href="https://github.com/CosmicMicra/OS-prioritypipes" target="_blank" rel="noopener" class="link">code ↗</a>
-        </article>
-
-        <article class="card" data-tags="systems">
-          <svg class="doodle"><use href="#d-chip"/></svg>
-          <h3>Custom protocol over UDP</h3>
-          <p>A client and server that speak a custom protocol over UDP, with acknowledgements, retries, error handling and subscriber verification.</p>
-          <p class="tags">C · sockets · networking</p>
-          <a href="https://github.com/CosmicMicra/CN-2" target="_blank" rel="noopener" class="link">code ↗</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- HACKATHONS -->
-    <section class="page reveal" id="hackathons">
-      <div class="section-head">
-        <span class="num hand">04</span>
-        <h2>hackathons</h2>
-        <p class="margin-note hand head-note">built in a weekend, with friends</p>
-      </div>
-      <div class="stamps">
-        <article class="stamp-card">
-          <svg class="doodle"><use href="#d-heart"/></svg>
-          <h3>Neighborhood Net <span class="sub">(HopeSF)</span></h3>
-          <p>Connects unhoused people in San Francisco with food, shelter and hygiene services in real time, through a map, a dashboard for providers and a chatbot.</p>
-          <p class="tags">React · TypeScript · Supabase · Mapbox · OpenAI</p>
-          <a href="https://devpost.com/software/neighborhood-net" target="_blank" rel="noopener" class="link">devpost ↗</a>
-        </article>
-        <article class="stamp-card">
-          <svg class="doodle"><use href="#d-shield"/></svg>
-          <h3>CodeShield</h3>
-          <p>An AI coding assistant for companies that can't share source code. It shows the model an abstracted version of the codebase, keeps the real code private, and adds Semgrep security scans.</p>
-          <p class="tags">Python · AWS Bedrock · Claude API · Semgrep</p>
-          <a href="https://devpost.com/software/codeshield-lpktd8" target="_blank" rel="noopener" class="link">devpost ↗</a>
-        </article>
-        <article class="stamp-card">
-          <svg class="doodle"><use href="#d-chart"/></svg>
-          <h3>ReportWeave</h3>
-          <p>A dashboard that builds reports and charts automatically, so nobody has to assemble them by hand.</p>
-          <p class="tags">React · data visualization</p>
-          <a href="https://youtu.be/cu7mdVQr_tI" target="_blank" rel="noopener" class="link">watch the demo ↗</a>
-        </article>
-      </div>
-    </section>
-
-    <!-- WRITING -->
-    <section class="page reveal" id="writing">
-      <div class="section-head">
-        <span class="num hand">05</span>
-        <h2>writing</h2>
-      </div>
-      <ul class="papers">
-        <li>
-          <h3>AI-Enhanced Kubernetes Application Monitoring System</h3>
-          <p>International Research Journal of Engineering and Technology · ISSN 2395-0056</p>
-        </li>
-        <li>
-          <h3>Kubernetes Application Monitoring System: A Review</h3>
-          <p>Journal of Engineering Computing and Architecture · ISSN 1934-7197</p>
-        </li>
-        <li>
-          <h3>Customer Return Intent Prediction using Machine Learning and Data Science</h3>
-          <p>Journal of Engineering Computing and Architecture · ISSN 1934-7197</p>
-        </li>
-      </ul>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="page reveal" id="contact">
-      <div class="letter">
-        <span class="tape" aria-hidden="true"></span>
-        <p class="hand letter-hi">say hello —</p>
-        <p>I'm happy to talk about ML engineering, security, or anything you saw here. The easiest way to reach me is LinkedIn.</p>
-        <ul class="contact-links">
-          <li><a href="https://www.linkedin.com/in/soniya-phaltane/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
-          <li><a href="https://github.com/CosmicMicra" target="_blank" rel="noopener">GitHub ↗</a></li>
-          <li><a href="https://drive.google.com/file/d/1V2m2AZzjk9Q4EhVxDTRktUBtY-zUyEx6" target="_blank" rel="noopener">Résumé ↗</a></li>
-        </ul>
-        <p class="hand signature">— Soniya</p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <p>made with care · © <span id="year">2026</span> Soniya Phaltane</p>
-    <a href="#top" class="hand">back to the first page ↑</a>
-  </footer>
+  <footer>Soniya Phaltane · San Jose, CA · <span id="year">2026</span></footer>
 
   <script src="main.js"></script>
 </body>
