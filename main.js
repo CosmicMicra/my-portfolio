@@ -10,11 +10,22 @@
   const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // ---------- theme ----------
-  document.getElementById('theme').addEventListener('click', () => {
+  const themeBtn = document.getElementById('theme');
+  const syncTheme = () => themeBtn.setAttribute('aria-pressed', root.dataset.theme === 'dark');
+  syncTheme();
+  themeBtn.addEventListener('click', () => {
     const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
     root.dataset.theme = next;
     localStorage.setItem('theme', next);
+    syncTheme();
   });
+
+  // jump straight past the story (smooth-scrolling through it would take ages)
+  document.querySelectorAll('a[href="#made"]').forEach(a => a.addEventListener('click', e => {
+    e.preventDefault();
+    document.getElementById('made').scrollIntoView({ behavior: 'instant' });
+    document.querySelectorAll('.reveal-up').forEach(el => el.classList.add('in'));
+  }));
 
   // ---------- split story text into words ----------
   function splitWords(node) {
@@ -45,22 +56,31 @@
     const parts = [...el.querySelectorAll('[data-at]')].map(n => ({ n, at: +n.dataset.at }));
     const scrub = el.querySelector('.scrub');
     // longer paragraphs get a little more scroll room
-    el.style.height = `${Math.max(190, 110 + words.length * 2.1)}vh`;
-    return { el, words, parts, scrub, lit: -1 };
+    el.style.height = `${Math.max(190, 110 + words.length * 2.1)}svh`;
+    return { el, stage: el.querySelector('.stage'), art: el.querySelector('.art'), words, parts, scrub, lit: -1, top: 0, h: 0 };
   });
 
   document.getElementById('chapters').textContent = String(scenes.length).padStart(2, '0');
   const chapterEl = document.getElementById('chapter');
   const bar = document.getElementById('progress');
 
+  // measure once (and again only when the width really changes, not when
+  // a phone's address bar slides in and out)
+  let vh = innerHeight, lastW = innerWidth;
+  function measure() {
+    vh = innerHeight;
+    scenes.forEach(s => { s.top = s.el.offsetTop; s.h = s.el.offsetHeight; });
+  }
+  measure();
+
   function update() {
-    const vh = innerHeight;
+    const y = scrollY;
     let active = 0;
     scenes.forEach((s, i) => {
-      const r = s.el.getBoundingClientRect();
-      const span = r.height - vh;
-      const p = reduced ? 1 : Math.min(1, Math.max(0, -r.top / span));
-      if (r.top <= vh * .5) active = i;
+      const rTop = s.top - y;
+      if (rTop <= vh * .5) active = i;
+      if (rTop > vh * 1.5 || rTop + s.h < -vh) return; // far away, skip
+      const p = reduced ? 1 : Math.min(1, Math.max(0, -rTop / (s.h - vh)));
 
       // words light up over the first 75% of the scene, leaving a beat to rest
       const lit = Math.round(Math.min(1, p / .75) * s.words.length);
@@ -68,19 +88,29 @@
         s.words.forEach((w, j) => w.classList.toggle('lit', j < lit));
         s.lit = lit;
       }
-      s.parts.forEach(({ n, at }) => n.classList.toggle('on', p >= at || (at === 0 && r.top < vh)));
+      s.parts.forEach(({ n, at }) => n.classList.toggle('on', p >= at || (at === 0 && rTop < vh)));
       if (s.scrub) s.scrub.style.strokeDashoffset = 1 - Math.min(1, p / .7);
+      if (!reduced) {
+        // settle, then softly dissolve into the next scene
+        s.stage.style.opacity = 1 - Math.min(1, Math.max(0, (p - .93) / .07));
+        if (s.art) s.art.style.transform = `translate3d(0, ${(p - .5) * -18}px, 0)`;
+      }
     });
     chapterEl.textContent = String(active + 1).padStart(2, '0');
     const max = root.scrollHeight - vh;
-    bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+    bar.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
   }
 
   let ticking = false;
   addEventListener('scroll', () => {
     if (!ticking) { ticking = true; requestAnimationFrame(() => { update(); ticking = false; }); }
   }, { passive: true });
-  addEventListener('resize', update);
+  addEventListener('resize', () => {
+    if (innerWidth === lastW && Math.abs(innerHeight - vh) < 120) return;
+    lastW = innerWidth;
+    requestAnimationFrame(() => { measure(); scenes.forEach(s => (s.lit = -1)); update(); });
+  });
+  addEventListener('load', () => { measure(); update(); });
   update();
 
   // ---------- gentle reveals after the story ----------

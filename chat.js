@@ -67,6 +67,7 @@
   function open() {
     panel.hidden = false;
     document.body.classList.add('chat-open');
+    document.getElementById('chat-fab').setAttribute('aria-expanded', 'true');
     if (!started) {
       started = true;
       add("Hi, I'm Soniya's little helper. I know the basics about her work. What would you like to know?", 'bot');
@@ -83,6 +84,7 @@
   function close() {
     panel.hidden = true;
     document.body.classList.remove('chat-open');
+    document.getElementById('chat-fab').setAttribute('aria-expanded', 'false');
     document.getElementById('chat-fab').focus();
   }
 
