@@ -1,15 +1,15 @@
 // ---------- word cloud ----------
 // Grey words scattered around; the red ones light up in reading order as you scroll.
 const filler = [
-  'models', 'tokens', 'prompts', 'embeddings', 'agents', 'permissions', 'logs', 'packages',
-  'dependencies', 'APIs', 'context', 'secrets', 'anomalies', 'pipelines', 'containers',
-  'inference', 'supply chain', 'fine-tuning', 'clusters', 'keys', 'retrieval', 'tools',
-  'sandbox', 'audit', 'signals', 'vectors', 'alerts', 'policies', 'weights', 'scanners'
+  'curiosity', 'friends', 'stories', 'gardens', 'math', 'kindness', 'teaching', 'questions',
+  'logs', 'clusters', 'packages', 'models', 'security', 'late nights', 'San Jose', 'Pune',
+  'puzzles', 'people', 'notebooks', 'patience', 'debugging', 'small details', 'why?', 'how?',
+  'learning', 'hackathons', 'weekends', 'trust', 'surprises', 'good docs'
 ];
 // focus words, placed roughly left-to-right, top-to-bottom so they read as a sentence
 const focus = [
-  ['AI', 14, 18], ['can', 38, 30], ['act', 60, 14], ['on its own', 84, 26],
-  ['so', 22, 58], ['who', 46, 70], ['checks', 66, 54], ['what it trusts?', 82, 80]
+  ['I', 12, 16], ['like', 30, 28], ['understanding', 56, 14], ['how things', 82, 28],
+  ['actually', 22, 60], ['work', 44, 72], ['before', 64, 56], ['I trust them.', 82, 82]
 ];
 
 const cloud = document.getElementById('cloud');
